@@ -1,28 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">cursor-md-mindmaps</title>
-  <desc id="desc">Symmetrical mindmap: central spine with two branches on the left and two on the right</desc>
+  <desc id="desc">Radial mindmap: central root with three child branches on the left and three on the right</desc>
   <defs>
     <style>
       .bg { fill: #ffffff; }
-      /* Black outline then yellow fill — stroke widths tuned so arms meet spine (half yellow = 18px) */
-      .ink { stroke: #0f0f0f; stroke-width: 44; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-      .fill { stroke: #ffeb3b; stroke-width: 36; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .edge-ink { stroke: #0f0f0f; stroke-width: 16; stroke-linecap: round; fill: none; }
+      .edge-fill { stroke: #ffeb3b; stroke-width: 12; stroke-linecap: round; fill: none; }
+      .node { fill: #ffeb3b; stroke: #0f0f0f; stroke-width: 5; }
     </style>
   </defs>
   <rect class="bg" width="512" height="512" rx="96"/>
+  <!-- Edges: endpoints sit on root (r=46) and leaf (r=28) circles -->
   <g>
-    <!-- Vertical spine: meets horizontal arms at x = 256 ± 18 -->
-    <path class="ink" d="M256 178v156"/>
-    <path class="ink" d="M92 214H238"/>
-    <path class="ink" d="M274 214H420"/>
-    <path class="ink" d="M92 298H238"/>
-    <path class="ink" d="M274 298H420"/>
+    <path class="edge-ink" d="M217 232 Q165 198 112 169"/>
+    <path class="edge-ink" d="M210 256H100"/>
+    <path class="edge-ink" d="M217 280 Q165 314 112 343"/>
+    <path class="edge-ink" d="M295 232 Q347 198 400 169"/>
+    <path class="edge-ink" d="M302 256h110"/>
+    <path class="edge-ink" d="M295 280 Q347 314 400 343"/>
   </g>
   <g>
-    <path class="fill" d="M256 178v156"/>
-    <path class="fill" d="M92 214H238"/>
-    <path class="fill" d="M274 214H420"/>
-    <path class="fill" d="M92 298H238"/>
-    <path class="fill" d="M274 298H420"/>
+    <path class="edge-fill" d="M217 232 Q165 198 112 169"/>
+    <path class="edge-fill" d="M210 256H100"/>
+    <path class="edge-fill" d="M217 280 Q165 314 112 343"/>
+    <path class="edge-fill" d="M295 232 Q347 198 400 169"/>
+    <path class="edge-fill" d="M302 256h110"/>
+    <path class="edge-fill" d="M295 280 Q347 314 400 343"/>
   </g>
+  <!-- Outer topics, then root on top (mindmap hub) -->
+  <circle class="node" cx="88" cy="155" r="28"/>
+  <circle class="node" cx="72" cy="256" r="28"/>
+  <circle class="node" cx="88" cy="357" r="28"/>
+  <circle class="node" cx="424" cy="155" r="28"/>
+  <circle class="node" cx="440" cy="256" r="28"/>
+  <circle class="node" cx="424" cy="357" r="28"/>
+  <circle class="node" cx="256" cy="256" r="46"/>
 </svg>
