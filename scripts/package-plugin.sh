@@ -20,6 +20,9 @@ mkdir -p "$STAGE/$NAME/scripts"
 cp -R "$ROOT/.cursor-plugin" "$STAGE/$NAME/"
 cp -R "$ROOT/skills" "$STAGE/$NAME/"
 cp -R "$ROOT/commands" "$STAGE/$NAME/"
+if [[ -d "$ROOT/assets" ]]; then
+  cp -R "$ROOT/assets" "$STAGE/$NAME/"
+fi
 cp "$ROOT/AGENTS.md" "$ROOT/README.md" "$ROOT/LICENSE" "$STAGE/$NAME/"
 [[ -f "$ROOT/.gitignore" ]] && cp "$ROOT/.gitignore" "$STAGE/$NAME/"
 cp "$ROOT/scripts/package-plugin.sh" "$STAGE/$NAME/scripts/"

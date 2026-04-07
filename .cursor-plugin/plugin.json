@@ -2,6 +2,7 @@
   "name": "cursor-md-mindmaps",
   "description": "Create hierarchical Markdown mindmaps and render offline interactive HTML with markmap.",
   "version": "1.0.0",
+  "logo": "assets/logo.svg",
   "author": {
     "name": "cggaurav"
   },

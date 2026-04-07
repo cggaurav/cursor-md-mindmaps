@@ -1,5 +1,11 @@
 # cursor-md-mindmaps (Cursor plugin)
 
+<p align="center">
+  <img src="assets/logo.svg" alt="cursor-md-mindmaps logo: mindmap tree with Markdown hash" width="160" height="160"/>
+</p>
+
+Square **512×512** PNG for GitHub’s **Settings → General → Social preview** (and similar): [`assets/repo-avatar.png`](assets/repo-avatar.png).
+
 **Repository:** [github.com/cggaurav/cursor-md-mindmaps](https://github.com/cggaurav/cursor-md-mindmaps)
 
 ```bash
