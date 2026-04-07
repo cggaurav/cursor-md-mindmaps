@@ -21,38 +21,34 @@ Create **Markdown** mindmaps and render **offline interactive HTML** using [mark
 
 Default paths in a project: `mindmaps/<topic-slug>.md` and `mindmaps/<topic-slug>.html`. This repo gitignores `mindmaps/*.html` so generated previews are not committed by default.
 
-## Example Markdown
+## Example mindmap (in this repo)
 
 [markmap](https://markmap.js.org/docs/markmap) maps **heading levels** (`#`, `##`, `###`) into a tree. Keep labels short; add bullets under a heading if you need extra detail.
 
-Example: `mindmaps/payment-architecture.md`
+**Shipped Markdown:** [`mindmaps/example-plugin-overview.md`](mindmaps/example-plugin-overview.md) — a small mindmap of this plugin (workflow, outputs, how to invoke). After you clone the repo, render offline HTML locally:
 
-```markdown
-# Payment architecture
-
-## Clients
-- Web app
-- Mobile SDK
-
-## Edge
-## API gateway
-### REST
-### Webhooks
-
-## Core services
-### Ledger
-### Fraud checks
-
-## Data
-### Postgres
-### Redis cache
-
-## Operations
-### Metrics
-### Alerts
+```bash
+npx markmap-cli "mindmaps/example-plugin-overview.md" -o "mindmaps/example-plugin-overview.html" --offline --no-open
+open mindmaps/example-plugin-overview.html   # macOS
 ```
 
-The agent writes this kind of file first, then runs `npx markmap-cli` to produce `mindmaps/payment-architecture.html` for the browser.
+Opening the `.html` file in a browser gives you the interactive pan/zoom mindmap; the `.md` source stays easy to edit and diff in Git.
+
+Preview of the structure (see the file for the full tree):
+
+```markdown
+# cursor-md-mindmaps
+
+## What it is
+## In your repo
+## Default outputs
+## Workflow
+## How to invoke
+### Slash command
+### Natural language
+## Prerequisites
+## This file
+```
 
 ## How to invoke in Cursor
 
@@ -125,11 +121,11 @@ Bump the version in `.cursor-plugin/plugin.json` when you cut a new release.
 3. Invoke with **`/mindmap …`** or a prompt from **How to invoke in Cursor** above.
 4. Confirm `mindmaps/<slug>.md` exists, then open `mindmaps/<slug>.html` in a browser.
 
-**Sanity check without the agent:** from the repo root,
+**Sanity check without the agent:** from the repo root (same example as above),
 
 ```bash
-npx markmap-cli "mindmaps/sample-verification.md" -o "mindmaps/sample-verification.html" --offline --no-open
-open mindmaps/sample-verification.html   # macOS
+npx markmap-cli "mindmaps/example-plugin-overview.md" -o "mindmaps/example-plugin-overview.html" --offline --no-open
+open mindmaps/example-plugin-overview.html   # macOS
 ```
 
 ## Demo easily
