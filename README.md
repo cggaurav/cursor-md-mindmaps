@@ -15,6 +15,58 @@ Create **Markdown** mindmaps and render **offline interactive HTML** using [mark
 
 Default paths in a project: `mindmaps/<topic-slug>.md` and `mindmaps/<topic-slug>.html`. This repo gitignores `mindmaps/*.html` so generated previews are not committed by default.
 
+## Example Markdown
+
+[markmap](https://markmap.js.org/docs/markmap) maps **heading levels** (`#`, `##`, `###`) into a tree. Keep labels short; add bullets under a heading if you need extra detail.
+
+Example: `mindmaps/payment-architecture.md`
+
+```markdown
+# Payment architecture
+
+## Clients
+- Web app
+- Mobile SDK
+
+## Edge
+## API gateway
+### REST
+### Webhooks
+
+## Core services
+### Ledger
+### Fraud checks
+
+## Data
+### Postgres
+### Redis cache
+
+## Operations
+### Metrics
+### Alerts
+```
+
+The agent writes this kind of file first, then runs `npx markmap-cli` to produce `mindmaps/payment-architecture.html` for the browser.
+
+## How to invoke in Cursor
+
+Install the plugin under `~/.cursor/plugins/local/cursor-md-mindmaps` and **restart Cursor**. Open your project folder, then:
+
+**Slash command** — in **Chat** or **Agent**, run:
+
+```text
+/mindmap high-level architecture for this repo
+```
+
+Use your own topic, for example `/mindmap OAuth2 flow for our B2B API`. If `/mindmap` does not show up in the command list yet, use a plain-language prompt instead.
+
+**Chat or Composer (natural language)** — for example:
+
+- “Create a markmap for the deployment pipeline. Put Markdown in `mindmaps/` and run `npx markmap-cli` with `--offline`.”
+- “Using the **cursor-md-mindmaps** skill, build an architecture mindmap for this codebase and render the HTML.”
+
+**After the run** — open the generated `mindmaps/<slug>.html` in a browser (double-click, or `open mindmaps/<slug>.html` on macOS) to pan and zoom the mindmap.
+
 ## Prerequisites
 
 - **Node.js** (LTS recommended) for `npx`
@@ -62,11 +114,10 @@ Bump the version in `.cursor-plugin/plugin.json` when you cut a new release.
 
 ## Test on a repository (quick)
 
-1. Install the plugin (clone or zip) under `~/.cursor/plugins/local/cursor-md-mindmaps` and restart Cursor.
-2. Open **any** git repo as the workspace (File → Open Folder), e.g. a small project or this repo.
-3. In **Chat** or **Composer**, ask explicitly for a mindmap, for example:
-   - “Using the cursor-md-mindmaps skill, create a mindmap for the high-level architecture of this codebase. Put Markdown under `mindmaps/` and run markmap-cli with `--offline`.”
-4. Confirm `mindmaps/<something>.md` appears, then open `mindmaps/<something>.html` in a browser (double-click or `open mindmaps/<something>.html` on macOS). You should be able to pan and zoom the SVG.
+1. Install the plugin and restart Cursor (see **Install** above).
+2. Open any repo as the workspace (**File → Open Folder**).
+3. Invoke with **`/mindmap …`** or a prompt from **How to invoke in Cursor** above.
+4. Confirm `mindmaps/<slug>.md` exists, then open `mindmaps/<slug>.html` in a browser.
 
 **Sanity check without the agent:** from the repo root,
 
