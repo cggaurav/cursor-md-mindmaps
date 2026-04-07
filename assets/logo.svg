@@ -1,41 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">cursor-md-mindmaps</title>
-  <desc id="desc">Mindmap: central node with curved branches to child nodes</desc>
+  <desc id="desc">Symmetrical mindmap: central spine with two branches on the left and two on the right</desc>
   <defs>
-    <linearGradient id="root" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#6366f1"/>
-    </linearGradient>
-    <linearGradient id="edge" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="#64748b" stop-opacity="0.4"/>
-      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#64748b" stop-opacity="0.4"/>
-    </linearGradient>
+    <style>
+      .bg { fill: #ffffff; }
+      /* Black outline then yellow fill — stroke widths tuned so arms meet spine (half yellow = 18px) */
+      .ink { stroke: #0f0f0f; stroke-width: 44; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .fill { stroke: #ffeb3b; stroke-width: 36; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    </style>
   </defs>
-  <!-- Organic mindmap connectors -->
-  <g fill="none" stroke="url(#edge)" stroke-width="12" stroke-linecap="round">
-    <path d="M256 200 C256 140 256 130 256 118"/>
-    <path d="M312 256 C370 256 382 256 394 256"/>
-    <path d="M256 312 C256 372 256 382 256 394"/>
-    <path d="M200 256 C142 256 130 256 118 256"/>
-    <path d="M288 224 C330 182 350 168 368 152"/>
-    <path d="M288 288 C330 330 350 344 368 360"/>
-    <path d="M224 288 C182 330 168 344 152 360"/>
-    <path d="M224 224 C182 182 168 168 152 152"/>
+  <rect class="bg" width="512" height="512" rx="96"/>
+  <g>
+    <!-- Vertical spine: meets horizontal arms at x = 256 ± 18 -->
+    <path class="ink" d="M256 178v156"/>
+    <path class="ink" d="M92 214H238"/>
+    <path class="ink" d="M274 214H420"/>
+    <path class="ink" d="M92 298H238"/>
+    <path class="ink" d="M274 298H420"/>
   </g>
-  <!-- Leaf nodes (mindmap children) -->
-  <circle cx="256" cy="96" r="32" fill="#f8fafc" stroke="#6366f1" stroke-width="7"/>
-  <circle cx="416" cy="256" r="30" fill="#f8fafc" stroke="#64748b" stroke-width="6"/>
-  <circle cx="256" cy="416" r="32" fill="#f8fafc" stroke="#38bdf8" stroke-width="7"/>
-  <circle cx="96" cy="256" r="30" fill="#f8fafc" stroke="#64748b" stroke-width="6"/>
-  <circle cx="384" cy="128" r="24" fill="#e2e8f0" stroke="#94a3b8" stroke-width="5"/>
-  <circle cx="384" cy="384" r="24" fill="#e2e8f0" stroke="#94a3b8" stroke-width="5"/>
-  <circle cx="128" cy="384" r="24" fill="#e2e8f0" stroke="#94a3b8" stroke-width="5"/>
-  <circle cx="128" cy="128" r="24" fill="#e2e8f0" stroke="#94a3b8" stroke-width="5"/>
-  <!-- Root node: Markdown heading hint -->
-  <circle cx="256" cy="256" r="64" fill="url(#root)"/>
-  <g fill="none" stroke="#f8fafc" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M220 214v84M292 214v84"/>
-    <path d="M214 238h84M214 274h84"/>
+  <g>
+    <path class="fill" d="M256 178v156"/>
+    <path class="fill" d="M92 214H238"/>
+    <path class="fill" d="M274 214H420"/>
+    <path class="fill" d="M92 298H238"/>
+    <path class="fill" d="M274 298H420"/>
   </g>
 </svg>
