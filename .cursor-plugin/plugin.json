@@ -1,0 +1,11 @@
+{
+  "name": "cursor-md-mindmaps",
+  "description": "Create hierarchical Markdown mindmaps and render offline interactive HTML with markmap.",
+  "version": "1.0.0",
+  "author": {
+    "name": "cggaurav"
+  },
+  "keywords": ["mindmap", "markdown", "markmap", "architecture", "diagram"],
+  "license": "MIT",
+  "repository": "https://github.com/cggaurav/cursor-md-mindmaps"
+}

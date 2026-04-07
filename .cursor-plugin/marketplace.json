@@ -1,0 +1,13 @@
+{
+  "name": "cursor-md-mindmaps-marketplace",
+  "owner": {
+    "name": "cggaurav"
+  },
+  "plugins": [
+    {
+      "name": "cursor-md-mindmaps",
+      "source": "./",
+      "description": "Mindmaps from Markdown using markmap: write structured .md, render self-contained offline HTML with markmap-cli."
+    }
+  ]
+}
