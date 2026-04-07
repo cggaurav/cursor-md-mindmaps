@@ -1,154 +1,44 @@
-# cursor-md-mindmaps (Cursor plugin)
-
 <p align="center">
-  <img src="assets/logo.svg" alt="cursor-md-mindmaps logo: mindmap tree with Markdown hash" width="160" height="160"/>
+  <img src="assets/logo.svg" alt="cursor-md-mindmaps" width="160" height="160"/>
 </p>
 
-Square **512×512** PNG for GitHub’s **Settings → General → Social preview** (and similar): [`assets/repo-avatar.png`](assets/repo-avatar.png).
-
-**Repository:** [github.com/cggaurav/cursor-md-mindmaps](https://github.com/cggaurav/cursor-md-mindmaps)
-
-```bash
-git clone git@github.com:cggaurav/cursor-md-mindmaps.git
-```
-
-Create **Markdown** mindmaps and render **offline interactive HTML** using [markmap](https://markmap.js.org/docs/markmap) and [`markmap-cli`](https://www.npmjs.com/package/markmap-cli). No server is required to view the generated HTML after it is built.
-
-## What you get
-
-- **Skill** `cursor-md-mindmaps`: write structured `.md`, then run `npx markmap-cli … --offline`
-- **Command** `/mindmap`: entry point for the same workflow (see [`commands/mindmap.md`](commands/mindmap.md))
-
-Default paths in a project: `mindmaps/<topic-slug>.md` and `mindmaps/<topic-slug>.html`. This repo gitignores `mindmaps/*.html` so generated previews are not committed by default.
-
-## Example mindmap (in this repo)
-
-[markmap](https://markmap.js.org/docs/markmap) maps **heading levels** (`#`, `##`, `###`) into a tree. Keep labels short; add bullets under a heading if you need extra detail.
-
-**Shipped Markdown:** [`mindmaps/example-plugin-overview.md`](mindmaps/example-plugin-overview.md) — a small mindmap of this plugin (workflow, outputs, how to invoke). After you clone the repo, render offline HTML locally:
-
-```bash
-npx markmap-cli "mindmaps/example-plugin-overview.md" -o "mindmaps/example-plugin-overview.html" --offline --no-open
-open mindmaps/example-plugin-overview.html   # macOS
-```
-
-Opening the `.html` file in a browser gives you the interactive pan/zoom mindmap; the `.md` source stays easy to edit and diff in Git.
-
-Preview of the structure (see the file for the full tree):
-
-```markdown
 # cursor-md-mindmaps
 
-## What it is
-## In your repo
-## Default outputs
-## Workflow
-## How to invoke
-### Slash command
-### Natural language
-## Prerequisites
-## This file
-```
+## How it works in Cursor
 
-## How to invoke in Cursor
+After you install the plugin, Cursor loads its **skill** and **slash command** for your workspace.
 
-Install the plugin under `~/.cursor/plugins/local/cursor-md-mindmaps` and **restart Cursor**. Open your project folder, then:
+- **Skill** `cursor-md-mindmaps` — When you ask for a mindmap, architecture map, or markmap from Markdown, the agent follows the skill: it writes a structured `.md` file (headings become the tree), then runs `npx markmap-cli … --offline` so you get a **self-contained HTML** file you can open locally. No server is required to view the HTML after it is generated.
+- **Command** `/mindmap` — Same workflow from Chat or Agent (for example `/mindmap high-level architecture for this repo`). You can also ask in natural language to use the skill and put output under `mindmaps/`.
 
-**Slash command** — in **Chat** or **Agent**, run:
+Default outputs are `mindmaps/<topic-slug>.md` and `mindmaps/<topic-slug>.html` at the project root. You need **Node.js** (LTS) so `npx` can run `markmap-cli`.
 
-```text
-/mindmap high-level architecture for this repo
-```
+## Install in Cursor
 
-Use your own topic, for example `/mindmap OAuth2 flow for our B2B API`. If `/mindmap` does not show up in the command list yet, use a plain-language prompt instead.
+1. Open **Cursor Settings** (`Cmd+,` on macOS, `Ctrl+,` on Windows/Linux), or **Cursor → Settings**.
+2. Open the **Plugins** section (you can search settings for “Plugins” or “Skills” depending on your Cursor version).
+3. Use **Import plugin**, **Install from URL**, or **Add marketplace** (the exact label varies) and paste the repository URL:
 
-**Chat or Composer (natural language)** — for example:
+   `https://github.com/cggaurav/cursor-md-mindmaps`
 
-- “Create a markmap for the deployment pipeline. Put Markdown in `mindmaps/` and run `npx markmap-cli` with `--offline`.”
-- “Using the **cursor-md-mindmaps** skill, build an architecture mindmap for this codebase and render the HTML.”
+4. Confirm the install and **restart Cursor** if prompted. If your build has per-skill toggles, enable the **cursor-md-mindmaps** skill for Agent or Chat as you prefer.
 
-**After the run** — open the generated `mindmaps/<slug>.html` in a browser (double-click, or `open mindmaps/<slug>.html` on macOS) to pan and zoom the mindmap.
+## Example mindmap
 
-## Prerequisites
+Source Markdown: [`mindmaps/example-plugin-overview.md`](mindmaps/example-plugin-overview.md).  
+Built offline HTML (checked in for demo): [`examples/example-plugin-overview.html`](examples/example-plugin-overview.html).
 
-- **Node.js** (LTS recommended) for `npx`
-- Network the first time you run `npx markmap-cli` (it downloads the package). HTML built with `--offline` works without the network afterward.
+<p align="center">
+  <iframe
+    src="https://cdn.jsdelivr.net/gh/cggaurav/cursor-md-mindmaps@main/examples/example-plugin-overview.html"
+    title="Example markmap mindmap"
+    width="100%"
+    height="420"
+    style="max-width: 720px; border: 1px solid #d0d7de; border-radius: 8px;"
+  ></iframe>
+</p>
 
-## Install (every Cursor project)
-
-**Option A — from a git clone**
-
-```bash
-mkdir -p ~/.cursor/plugins/local
-ln -sf /absolute/path/to/cursor-md-mindmaps-repo ~/.cursor/plugins/local/cursor-md-mindmaps
-```
-
-Or copy the folder instead of symlinking:
-
-```bash
-cp -R /path/to/cursor-md-mindmaps-repo ~/.cursor/plugins/local/cursor-md-mindmaps
-```
-
-**Option B — from the release zip**
-
-1. Run `./scripts/package-plugin.sh` (or use a prebuilt `dist/cursor-md-mindmaps-v*.zip` from a release).
-2. Unzip so you have a folder named `cursor-md-mindmaps` containing `.cursor-plugin/`, `skills/`, etc.
-3. Move or link it into place:
-
-   ```bash
-   mkdir -p ~/.cursor/plugins/local
-   mv cursor-md-mindmaps ~/.cursor/plugins/local/
-   ```
-
-Restart **Cursor** after installing or upgrading the plugin.
-
-## Package for upload
-
-To produce a single archive (for releases, manual sharing, or some marketplace flows):
-
-```bash
-./scripts/package-plugin.sh
-```
-
-Output: `dist/cursor-md-mindmaps-v<version>.zip` (see `.cursor-plugin/plugin.json` for `version`). The zip root contains one folder, `cursor-md-mindmaps/`, ready to unzip into `~/.cursor/plugins/local/` as above.
-
-Bump the version in `.cursor-plugin/plugin.json` when you cut a new release.
-
-## Test on a repository (quick)
-
-1. Install the plugin and restart Cursor (see **Install** above).
-2. Open any repo as the workspace (**File → Open Folder**).
-3. Invoke with **`/mindmap …`** or a prompt from **How to invoke in Cursor** above.
-4. Confirm `mindmaps/<slug>.md` exists, then open `mindmaps/<slug>.html` in a browser.
-
-**Sanity check without the agent:** from the repo root (same example as above),
-
-```bash
-npx markmap-cli "mindmaps/example-plugin-overview.md" -o "mindmaps/example-plugin-overview.html" --offline --no-open
-open mindmaps/example-plugin-overview.html   # macOS
-```
-
-## Demo easily
-
-- **Record a short demo:** show Chat requesting an architecture mindmap → show the `.md` file → run or show the generated `.html` in the browser.
-- **Optional:** add a screenshot of the opened HTML to your GitHub README after you generate a nice example mindmap.
-
-## Configuration before publishing
-
-Optional: add a `logo` path in `.cursor-plugin/plugin.json`.
-
-## Publishing
-
-- **GitHub**: push to `git@github.com:cggaurav/cursor-md-mindmaps.git` (or open a PR from a fork).
-- **Cursor Marketplace**: [Publish a plugin](https://cursor.com/marketplace/publish) (follow the current submission steps; attach or link your repo or release asset as required).
-
-### cursor.directory (community listing)
-
-Submit the **public HTTPS** repo URL (not the SSH clone URL) on [cursor.directory — new plugin](https://cursor.directory/plugins/new):
-
-`https://github.com/cggaurav/cursor-md-mindmaps`
-
-The site auto-detects plugin metadata from the repository; keep this repo public so discovery and validation work.
+If the preview does not appear (for example on github.com, which often strips embedded HTML), open the [interactive example](https://htmlpreview.github.io/?https://raw.githubusercontent.com/cggaurav/cursor-md-mindmaps/main/examples/example-plugin-overview.html) or download [`examples/example-plugin-overview.html`](examples/example-plugin-overview.html) and open it in your browser.
 
 ## License
 
