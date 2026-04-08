@@ -29,16 +29,14 @@ Source Markdown: [`mindmaps/example-plugin-overview.md`](mindmaps/example-plugin
 Built offline HTML (checked in for demo): [`examples/example-plugin-overview.html`](examples/example-plugin-overview.html).
 
 <p align="center">
-  <iframe
-    src="https://cdn.jsdelivr.net/gh/cggaurav/cursor-md-mindmaps@main/examples/example-plugin-overview.html"
-    title="Example markmap mindmap"
-    width="100%"
-    height="420"
-    style="max-width: 720px; border: 1px solid #d0d7de; border-radius: 8px;"
-  ></iframe>
+  <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/cggaurav/cursor-md-mindmaps/main/examples/example-plugin-overview.html">
+    Open interactive example mindmap
+  </a>
 </p>
 
-If the preview does not appear (for example on github.com, which often strips embedded HTML), open the [interactive example](https://htmlpreview.github.io/?https://raw.githubusercontent.com/cggaurav/cursor-md-mindmaps/main/examples/example-plugin-overview.html) or download [`examples/example-plugin-overview.html`](examples/example-plugin-overview.html) and open it in your browser.
+GitHub and many markdown renderers strip `<iframe>` for security, so inline embeds usually do not render. Use the link above, or open the local file in your browser:
+
+`open examples/example-plugin-overview.html`
 
 ## License
 
